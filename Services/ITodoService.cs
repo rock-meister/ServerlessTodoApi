@@ -5,7 +5,7 @@ namespace ServerlessTodoApi.Services
 {
     public interface ITodoService
     {
-        Dictionary<string, string> GetTodoItems();
+        IList<TodoItem> GetTodoItems();
         void AddTodoItem(TodoItem todoItem);
         void RemoveTodoItem(string Id);
     }
