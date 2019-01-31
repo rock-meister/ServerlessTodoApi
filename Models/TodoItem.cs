@@ -1,4 +1,4 @@
-namespace ServerlessTodoApi.Model
+namespace ServerlessTodoApi.Models
 {
     public class TodoItem
     {

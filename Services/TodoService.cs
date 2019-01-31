@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ServerlessTodoApi.Model;
+using ServerlessTodoApi.Models;
 
 namespace ServerlessTodoApi.Services
 {

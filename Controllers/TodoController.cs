@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServerlessTodoApi.Services;
-using ServerlessTodoApi.Model;
+using ServerlessTodoApi.Models;
 
 namespace ServerlessTodoApi.Controllers
 {
