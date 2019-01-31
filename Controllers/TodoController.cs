@@ -36,7 +36,7 @@ namespace ServerlessTodoApi.Controllers
         [HttpDelete]
         public IActionResult DeleteTodoItem([FromBody] TodoItem todoItem)
         {
-            _TodoService.RemoveTodoItem(todoItem.id);
+            _TodoService.RemoveTodoItem(todoItem.Id);
             return Ok();
         }
     }

@@ -5,20 +5,20 @@ namespace ServerlessTodoApi.Services
 {
     public class TodoService : ITodoService
     {
-        private readonly Dictionary<int, string> _todo = new Dictionary<int, string>();
-        public Dictionary<int, string> GetTodoItems()
+        private readonly Dictionary<string, string> _todo = new Dictionary<string, string>();
+        public Dictionary<string, string> GetTodoItems()
         {
             return _todo;
         }
 
         public void AddTodoItem(TodoItem todoItem)
         {
-            _todo.Add(todoItem.id, todoItem.title);
+            _todo.Add(todoItem.Id, todoItem.Title);
         }
 
-        public void RemoveTodoItem(int id)
+        public void RemoveTodoItem(string Id)
         {
-            _todo.Remove(id);
+            _todo.Remove(Id);
         }
     }
 }

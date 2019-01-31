@@ -2,7 +2,8 @@ namespace ServerlessTodoApi.Models
 {
     public class TodoItem
     {
-        public int id;
-        public string title;
+        public string Id { get; set; }
+        public string Title { get; set; }
+        public bool IsComplete { get; set; }
     }
 }
