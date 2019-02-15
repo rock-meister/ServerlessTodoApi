@@ -10,5 +10,6 @@ namespace ServerlessTodoApi.Services
         void AddTodoItem(TodoItem todoItem);
         void RemoveTodoItem(int id);
         void UpdateTodoItem(TodoItem todoItem);
+        void CompleteTodoItem(TodoItem todoItem);
     }
 }

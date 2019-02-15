@@ -47,9 +47,16 @@ namespace ServerlessTodoApi.Controllers
             _todoService.RemoveTodoItem(todoItem.Id);
             return Ok();
         }
+        [HttpPut]
         public IActionResult UpdateTodoItem([FromBody] TodoItem todoItem)
         {
             _todoService.UpdateTodoItem(todoItem);
+            return Ok();
+        }
+        [HttpPut("CompleteTodoItem")]
+        public IActionResult CompleteTodoItem([FromBody] TodoItem todoItem)
+        {
+            _todoService.CompleteTodoItem(todoItem);
             return Ok();
         }
     }

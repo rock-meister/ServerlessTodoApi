@@ -39,5 +39,11 @@ namespace ServerlessTodoApi.Services
             _todoContext.Update(todoItem);
             _todoContext.SaveChanges();
         }
+        public void CompleteTodoItem(TodoItem todoItem)
+        {
+            todoItem.IsComplete=true;
+            _todoContext.Update(todoItem);
+            _todoContext.SaveChanges();
+        }
     }
 }
