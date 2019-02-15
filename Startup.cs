@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using ServerlessTodoApi.Data;
+using ServerlessTodoApi.Services;
 
 namespace ServerlessTodoApi
 {
@@ -28,6 +29,7 @@ namespace ServerlessTodoApi
             services.AddMvc();
             services.AddDbContext<TodoContext>(options =>
                 options.UseInMemoryDatabase("Todos"));
+            services.AddScoped<ITodoService, TodoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

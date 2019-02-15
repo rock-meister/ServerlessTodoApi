@@ -4,39 +4,32 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ServerlessTodoApi.Models;
-using ServerlessTodoApi.Data;
+using ServerlessTodoApi.Services;
 
 namespace ServerlessTodoApi.Controllers
 {
     [Route("api/[controller]")]
     public class TodoController : Controller
     {
-        //private readonly ITodoService _TodoService;
-        private readonly TodoContext _context;
+        private readonly ITodoService _todoService;
 
-        public TodoController(TodoContext context)
+        public TodoController(ITodoService todoService)
         {
-            _context = context;
+            _todoService = todoService;
         }
 
         // GET api/Todo
         [HttpGet]
         public IList<TodoItem> GetTodoItems()
         {
-            return _context.Todos.ToList();
+            return _todoService.GetTodoItems();
         }
 
         // The GET (by ID)
         [HttpGet("{id}")]
-        public TodoItem GetById(long id)
+        public TodoItem GetById(int id)
         {
-            var todoItem = _context.Todos.Find(id);
-
-            //if (todoItem == null)
-            //{
-                //return NotFound();
-            //}
-
+            var todoItem = _todoService.Find(id);
             return todoItem;
         }
 
@@ -44,16 +37,14 @@ namespace ServerlessTodoApi.Controllers
         [HttpPost]
         public IActionResult AddTodoItem([FromBody]TodoItem todoItem)
         {
-            _context.Add(todoItem);
-            _context.SaveChanges();
+            _todoService.AddTodoItem(todoItem);
             return Ok();
         }
         // Delete api/Todo
         [HttpDelete]
         public IActionResult DeleteTodoItem([FromBody] TodoItem todoItem)
         {
-            _context.Remove(todoItem);
-            _context.SaveChanges();
+            _todoService.RemoveTodoItem(todoItem.Id);
             return Ok();
         }
     }

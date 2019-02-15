@@ -1,28 +1,38 @@
 using System;
 using System.Collections.Generic;
 using ServerlessTodoApi.Models;
-
+using ServerlessTodoApi.Data;
+using System.Linq;
 
 
 namespace ServerlessTodoApi.Services
 {
     public class TodoService : ITodoService
     {
-        private readonly IList<TodoItem> _todo = new List<TodoItem>();
+        private readonly TodoContext _todoContext;
+        public TodoService(TodoContext todoContext)
+        {
+            _todoContext = todoContext;
+        }
         public IList<TodoItem> GetTodoItems()
         {
-            return _todo;
+            return _todoContext.Todos.ToList();
         }
 
+        public TodoItem Find(int id)
+        {
+            return _todoContext.Todos.Find(id);
+        }
         public void AddTodoItem(TodoItem todoItem)
         {
-            _todo.Add(todoItem);
+            _todoContext.Add(todoItem);
+            _todoContext.SaveChanges();
         }
 
-        public void RemoveTodoItem(string Id)
+        public void RemoveTodoItem(int id)
         {
-            //_todo.Remove(_todo.Contains(x => x.Id() == Id)
-            throw new NotImplementedException();
+            _todoContext.Remove(Find(id));
+            _todoContext.SaveChanges();
         }
     }
 }
