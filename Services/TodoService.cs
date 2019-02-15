@@ -34,5 +34,10 @@ namespace ServerlessTodoApi.Services
             _todoContext.Remove(Find(id));
             _todoContext.SaveChanges();
         }
+        public void UpdateTodoItem(TodoItem todoItem)
+        {
+            _todoContext.Update(todoItem);
+            _todoContext.SaveChanges();
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace ServerlessTodoApi.Services
         TodoItem Find(int id);
         void AddTodoItem(TodoItem todoItem);
         void RemoveTodoItem(int id);
+        void UpdateTodoItem(TodoItem todoItem);
     }
 }
