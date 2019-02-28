@@ -1,0 +1,17 @@
+service: ServerlessTodoApi
+
+provider:
+  name: aws
+  runtime: dotnetcore2.1
+  region: us-east-1
+
+package:
+  artifact: bin/release/netcoreapp2.1/ServerlessTodoApi.zip
+
+functions:
+  api:
+    handler: ServerlessTodoApi::ServerlessTodoApi.LambdaEntryPoint::FunctionHandlerAsync
+    events:
+     - http:
+         path: /{proxy+}
+         method: ANY
