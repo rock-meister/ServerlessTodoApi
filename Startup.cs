@@ -41,6 +41,27 @@ namespace ServerlessTodoApi
             }
 
             app.UseMvc();
+            SeedDatabase(app.ApplicationServices);
+        }
+
+        private static void SeedDatabase(IServiceProvider serviceProvider)
+        {
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                try
+                {
+                    var context = services.GetRequiredService<TodoContext>();
+                    context.Database.EnsureCreated();
+                    SeedData.Initialize(services);
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "A database seeding error occurred.");
+                }
+            }
         }
     }
 }
